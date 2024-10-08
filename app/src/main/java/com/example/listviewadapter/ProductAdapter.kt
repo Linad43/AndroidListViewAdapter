@@ -1,6 +1,7 @@
 package com.example.listviewadapter
 
 import android.content.Context
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +24,7 @@ ArrayAdapter<Product>(context, R.layout.list_item, productList){
         val name = view?.findViewById<TextView>(R.id.nameProduct)
         val price = view?.findViewById<TextView>(R.id.priceProduct)
 
-        image?.setImageBitmap(product?.image)
+        image?.setImageURI(Uri.parse(product!!.image))
         name?.text = product?.name
         price?.text = product?.price.toString()
 

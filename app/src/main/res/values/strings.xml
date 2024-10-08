@@ -3,4 +3,7 @@
     <string name="add">Добавить</string>
     <string name="price">Цена</string>
     <string name="name">Наименование</string>
+    <string name="start">Создать магазин</string>
+    <string name="info">Описание</string>
+    <string name="back">Назад</string>
 </resources>
