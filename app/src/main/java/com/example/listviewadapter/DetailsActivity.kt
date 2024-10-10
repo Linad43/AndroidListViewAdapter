@@ -32,9 +32,9 @@ class DetailsActivity : AppCompatActivity() {
             insets
         }
         photoIV = findViewById(R.id.photoIW)
-        nameTV = findViewById(R.id.nameET)
-        priceTV = findViewById(R.id.priceET)
-        button = findViewById(R.id.button)
+        nameTV = findViewById(R.id.nameTV)
+        priceTV = findViewById(R.id.priceTV)
+        button = findViewById(R.id.addProductBTN)
 
         val product = intent.getSerializableExtra("product", Product::class.java)
         photoIV.setImageURI(product!!.image.toUri())

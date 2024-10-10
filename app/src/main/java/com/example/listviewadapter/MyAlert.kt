@@ -17,7 +17,7 @@ class MyAlert : DialogFragment() {
         informable = context as Informable?
     }
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val product = requireArguments().getSerializable("person")
+        val product = requireArguments().getSerializable("product")
         val builder = AlertDialog.Builder(
             requireActivity()
         )

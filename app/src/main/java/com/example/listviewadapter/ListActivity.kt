@@ -85,7 +85,7 @@ class ListActivity : AppCompatActivity(), Removable, Informable {
         }
         listLV.onItemClickListener =
             AdapterView.OnItemClickListener { parent, viev, position, id ->
-                val product = productAdapter!!.getItem(position)
+                val product = productAdapter?.getItem(position)
 //                item = position
                 val dialog = MyAlert()
                 val args = Bundle()
