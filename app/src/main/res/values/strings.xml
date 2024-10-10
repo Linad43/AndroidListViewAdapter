@@ -6,4 +6,6 @@
     <string name="start">Создать магазин</string>
     <string name="info">Описание</string>
     <string name="back">Назад</string>
+    <string name="infoProduct">Краткая информация(необязательно)</string>
+    <string name="exit">Выход</string>
 </resources>

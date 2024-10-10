@@ -9,13 +9,14 @@ import com.example.androidstoreproduct.Product
 
 class MyAlert : DialogFragment() {
 
-    private var removable:Removable? = null
-    private var informable:Informable? = null
+    private var removable: Removable? = null
+    private var informable: Informable? = null
     override fun onAttach(context: Context) {
         super.onAttach(context)
         removable = context as Removable?
         informable = context as Informable?
     }
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val product = requireArguments().getSerializable("product")
         val builder = AlertDialog.Builder(

@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.AdapterView
 import android.widget.Button
 import android.widget.EditText
@@ -15,21 +17,23 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.androidstoreproduct.Product
+import androidx.appcompat.widget.Toolbar
 
 class ListActivity : AppCompatActivity(), Removable, Informable {
 
     var check = true
-    private var product:Product? = null
+    private var product: Product? = null
     private val products = arrayListOf<Product>()
     private var productAdapter: ProductAdapter? = null
     private var photoUri: Uri? = null
-    private lateinit var toolbar: androidx.appcompat.widget.Toolbar
+    private lateinit var toolbar: Toolbar
     private lateinit var photoIW: ImageView
     private lateinit var nameET: EditText
     private lateinit var priceET: EditText
     private lateinit var addProductBTN: Button
     private lateinit var listLV: ListView
-    var item:Int? = null
+    private lateinit var infoProductET: EditText
+    var item: Int? = null
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,8 +52,11 @@ class ListActivity : AppCompatActivity(), Removable, Informable {
         priceET = findViewById(R.id.priceET)
         addProductBTN = findViewById(R.id.addProductBTN)
         listLV = findViewById(R.id.listView)
+        toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
         photoUri =
             Uri.parse("android.resourse://com.example.listviewadapter/" + R.drawable.image_default)
+        infoProductET = findViewById(R.id.infoProductET)
 
         photoIW.setOnClickListener {
             val photoPickerIntent = Intent(Intent.ACTION_PICK)
@@ -62,7 +69,12 @@ class ListActivity : AppCompatActivity(), Removable, Informable {
                 val product = Product(
                     nameET.text.toString(),
                     priceET.text.toString().toDouble(),
-                    photoUri.toString()
+                    photoUri.toString(),
+                    if (infoProductET.text.isEmpty()) {
+                        ""
+                    } else {
+                        infoProductET.text.toString()
+                    }
                 )
                 products.add(product)
                 productAdapter = ProductAdapter(this, products)
@@ -70,6 +82,7 @@ class ListActivity : AppCompatActivity(), Removable, Informable {
                 productAdapter?.notifyDataSetChanged()
                 nameET.text.clear()
                 priceET.text.clear()
+                infoProductET.text.clear()
                 photoIW.setImageResource(R.drawable.downloads_image)
                 photoUri = Uri.parse(
                     "android.resourse://com.example.listviewadapter/"
@@ -92,7 +105,6 @@ class ListActivity : AppCompatActivity(), Removable, Informable {
                 args.putSerializable("product", product)
                 dialog.arguments = args
                 dialog.show(supportFragmentManager, "custom")
-
             }
 
     }
@@ -107,6 +119,20 @@ class ListActivity : AppCompatActivity(), Removable, Informable {
             }
         }
         photoIW.setImageURI(photoUri)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.exit -> {
+                finishAffinity()
+            }
+        }
+        return true
     }
 
     override fun remove(product: Product) {

@@ -20,7 +20,7 @@
     <ImageView
         android:id="@+id/photoIW"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="250dp"
         android:src="@drawable/downloads_image" />
 
     <TextView
@@ -37,9 +37,15 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:hint="@string/price"
-        android:inputType="numberDecimal"
         android:textSize="30sp" />
 
+    <TextView
+        android:id="@+id/infoTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:hint="@string/info"
+        android:textSize="30sp" />
 
     <Button
         android:id="@+id/addProductBTN"

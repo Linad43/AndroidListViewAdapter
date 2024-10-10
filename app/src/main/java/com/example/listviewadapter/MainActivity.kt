@@ -2,28 +2,20 @@ package com.example.listviewadapter
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
-import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.ListView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.res.ResourcesCompat
-import androidx.core.graphics.drawable.toDrawable
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.androidstoreproduct.Product
-import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var button: Button
+    private lateinit var toolbar: Toolbar
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,10 +28,25 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         button = findViewById(R.id.button)
+        toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
         button.setOnClickListener {
             startActivity(Intent(this, ListActivity::class.java))
             finish()
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.exit -> {
+                finishAffinity()
+            }
+        }
+        return true
+    }
 }
